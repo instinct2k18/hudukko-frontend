@@ -1,11 +1,12 @@
 <div class="container" *ngIf="snapdeal; else noData">
   <div class="row">
     <div class="col-md-4 col-sm-4 col-xs-4 mb-2" *ngFor="let item of snapdeal">
-      <div class="card bg-light border-success" style="width: 18rem; height: 22rem;">
+      <div class="card bg-light border-success" style="max-width: 18rem; height: 22rem;">
         <div class="card-body mb-2 mr-2 ml-2">
-          <h6 class="card-title"><strong>{{item.title}}</strong></h6>
+          <h6 class="card-title card-text"><span *ngIf="item.title.length > 15"><strong>{{item.title | slice:0:15 }}...</strong></span></h6>
+          <h6 class="card-title card-text"><span *ngIf="item.title.length < 15"><strong>{{ item.title }}</strong></span></h6>
           <a href="{{item.link}}" target="_blank"><img class="card-img img-fluid" style="width:80%; height: auto;" src="{{item.image}}"></a>                                
-          <p class="card-text">Rs.&nbsp;{{item.price}}</p>
+          <p class="card-text mt-3"><strong>Rs&nbsp;{{item.price}}</strong></p>
         </div>
       </div>
     </div>
@@ -15,4 +16,8 @@
 <ng-template #noData>
   <h2 class="text-center text-warning mt-5">No Data Available</h2>
   <a [routerLink]="['/home']" routerLinkActive="router-link-active"  class="btn btn-primary">Search Again</a>
+</ng-template>
+
+<ng-template #short>
+    <span><strong>{{item.title}}</strong></span>
 </ng-template>
