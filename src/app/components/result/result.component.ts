@@ -9,8 +9,8 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ResultComponent implements OnInit {
 
-  private flipkart = new BehaviorSubject<any>(null);
-  private snapdeal = new BehaviorSubject<any>(null);
+  public flipkart = new BehaviorSubject<any>(null);
+  public snapdeal = new BehaviorSubject<any>(null);
 
   constructor(public hudkoService: HudukkoService) {
     hudkoService.flipkartdata$.subscribe(data => this.flipkart = data);
