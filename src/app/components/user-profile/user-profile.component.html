@@ -3,20 +3,20 @@
 </div>
 
 <ng-template #guest>
-  <div class="card bg-light mb-3 ml-3" style="width: 18rem;">
-    <div class="card-body">
-      <h4 class="card-title">Hello, Guest</h4>
+  <div class="card bg-dark mb-3 ml-3" style="width: 18rem;">
+    <div class="card-body align-items-center">
+      <h4 class="card-title text-light">Hello, Guest</h4>
       <br />
-      <p>Please Login To Get Started</p>
+      <p class="text-warning">Please Login To Get Started</p>
     </div>
   </div>
 </ng-template>
 
 <!-- User logged in -->
 <ng-template #authenticated>
-  <div class="card bg-light mb-3" style="width: 18rem;">
-    <div class="card-body" *ngIf="auth.user | async as user">
-      <h4 class="card-title">Hey, {{ user.displayName }}</h4>
+  <div class="card bg-dark mb-3" style="width: 18rem;">
+    <div class="card-body align-items-center" *ngIf="auth.user | async as user">
+      <h4 class="card-title text-warning">Hey, {{ user.displayName }}</h4>
       <a href="#" class="btn btn-primary" (click)="logout()">Logout</a>
     </div>
   </div>

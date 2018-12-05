@@ -1,13 +1,21 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <app-navbar></app-navbar>
 
-<div class="container">
-  <div class="row mr-auto">
-    <div class="col-sm-6 col-md-6">
-      <app-user-profile></app-user-profile>
-    </div>
-    <div class="col-sm-6 col-md-6">
-      <router-outlet></router-outlet>
+
+
+<div class="container center">
+  <h1 class="text-center mb-5 text-warning" *ngIf="!(auth.user | async); else hudukko">Welcome to Hudukko</h1>
+  <div class="card-block d-flex">
+    <div class="card-body align-items-center d-flex justify-content-center">
+      <div class="row text-center h-200">
+        <div class="col-sm-12 col-md-12 col-xs-12">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
+<ng-template #hudukko>
+  <h1 class="text-center mb-5 text-warning">Yen Beku Hudki...</h1>
+</ng-template>
