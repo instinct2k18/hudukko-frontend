@@ -1,5 +1,5 @@
 <div class="container" *ngIf="!(auth.user | async); else alreadyLoggedIn">
-    <h1 class="mb-5 text-warning">Welcome to Hudukko</h1>
+    <h1 class="mb-5 hudukko text-center">hudukko</h1>
   <div class="card bg-light text-center">
     <div class="card-body">
       <h4>Login Here To Search Products:</h4>
@@ -13,7 +13,7 @@
 
 
 <ng-template #alreadyLoggedIn>
-  <h1 class="mb-5 text-warning">Yen Beku Hudki...</h1>
+  <h1 class="mb-5 hudukko">hudukko</h1>
   <div class="card">
     <div class="card-body">
       <form class="mt-3">
