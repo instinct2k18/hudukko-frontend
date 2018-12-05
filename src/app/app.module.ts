@@ -17,7 +17,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
 
-import { environment } from '../environments/environment';
+import { environment } from '../environments/environment.prod';
 import { CoreModule } from './core/core.module';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
