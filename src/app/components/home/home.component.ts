@@ -18,7 +18,7 @@ export class Data {
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  public API_URL = 'http://localhost:3000/api';
+  public API_URL = 'https://hudukkoli.herokuapp.com/api';
 
   public flipkartData: Object;
   public snapDealData: Object;
