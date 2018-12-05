@@ -1,0 +1,53 @@
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class HudukkoService {
+  private baseUrl: String = 'http://127.0.0.1:5000/?x=1CE15CS145&';
+  private apidata = new BehaviorSubject<any>(null);
+  public apidata$ = this.apidata.asObservable();
+
+  constructor(private http: HttpClient) {}
+
+  fetchData(item, price) {
+    return this.http
+      .get(this.baseUrl + 'prod=' + item + '&price=' + price)
+      .pipe(data => {
+        return data;
+      });
+  }
+
+  setData(data) {
+    this.apidata.next(data);
+  }
+}
+
+
+
+
+import { Component, OnInit } from '@angular/core';
+import { HudukkoService } from '../../service/hudukko.service';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
+})
+export class HomeComponent implements OnInit {
+
+  constructor(private hudkoService: HudukkoService) { }
+
+  ngOnInit() {
+  }
+
+  public fetchData(item, price) {
+    this.hudkoService.fetchData(item, price).subscribe(data => {
+      this.hudkoService.setData(data);
+      console.log('Data Set : ' + data);
+    });
+  }
+}
+

@@ -20,6 +20,8 @@ import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { UsersComponent } from './components/users/users.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     ErrorComponent,
     ResultComponent,
     LoginComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    AboutUsComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

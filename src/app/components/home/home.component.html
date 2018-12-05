@@ -1,4 +1,5 @@
 <div class="container" *ngIf="!(auth.user | async); else alreadyLoggedIn">
+    <h1 class="mb-5 text-warning">Welcome to Hudukko</h1>
   <div class="card bg-light text-center">
     <div class="card-body">
       <h4>Login Here To Search Products:</h4>
@@ -12,6 +13,7 @@
 
 
 <ng-template #alreadyLoggedIn>
+  <h1 class="mb-5 text-warning">Yen Beku Hudki...</h1>
   <div class="card">
     <div class="card-body">
       <form class="mt-3">
@@ -37,7 +39,7 @@
           </div>
           <div class="col-sm-3 col-md-3 col-xs-3">
             <div class="form-group no-gutters">
-              <button type="button" class="btn btn-large btn-primary" (click)="search(product.value,price.value)">Search</button>
+              <button type="button" class="btn btn-large btn-primary" [routerLink]="['/results']" routerLinkActive="router-link-active"  (click)="search(product.value,price.value)">Hudku</button>
             </div>
           </div>
         </div>

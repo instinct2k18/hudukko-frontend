@@ -2,6 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/service/auth.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { HudukkoService } from 'src/app/service/hudukko.service';
+
+export class Data {
+  link: string;
+  image: string;
+  title: string;
+  price: string;
+}
 
 @Component({
   selector: 'app-home',
@@ -9,12 +18,15 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  public API_URL = 'http://localhost:5000/?x=1CE15CS145&';
+  public API_URL = 'http://localhost:3000/api';
+
+  public flipkartData: Object;
+  public snapDealData: Object;
 
   constructor(
     public auth: AuthService,
     private router: Router,
-    private http: HttpClient
+    public hudukko: HudukkoService
   ) {}
 
   /// Social Login
@@ -54,10 +66,42 @@ export class HomeComponent {
   }
 
   public search(product, price) {
-    this.http
-      .get(this.API_URL + 'prod=' + product + '&price=' + price)
-      .subscribe(data => {
-        console.log(data);
-      });
+    console.log('here');
+    const flipkartUrl = this.API_URL + '/scrapeFlipkart?product=' + product + '&price=' + price;
+    const snapDealUrl = this.API_URL + '/scrapeSnapdeal?product=' + product + '&price=' + price;
+    console.log(flipkartUrl, snapDealUrl);
+
+    this.hudukko.getFlipkartData(flipkartUrl).subscribe(data => {
+      this.hudukko.setFlipkartData(data);
+      console.log('Data Set : ' + data);
+    });
+
+    this.hudukko.getsnapdealData(snapDealUrl).subscribe(data => {
+      this.hudukko.setsnapDealData(data);
+      console.log('Data Set : ' + data);
+    });
+
   }
+
+  // public scrapeFlipkart(url): Object {
+  //   return this.http.get(url).pipe(map(data => {
+  //     return data;
+  //   }));
+  // }
+
+  // public scrapeSnapdeal(url): Object {
+  //   return this.http.get(url).pipe(map(data => {
+  //     console.log(data);
+  //     return data;
+  //   }));
+  // }
 }
+
+
+// fetchData(item, price) {
+//   return this.http
+//     .get(this.baseUrl + 'prod=' + item + '&price=' + price)
+//     .pipe(data => {
+//       return data;
+//     });
+// }

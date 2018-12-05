@@ -7,7 +7,10 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">About Us</a>
+        <a class="nav-link" [routerLink]="['/about']" routerLinkActive="router-link-active">About Us</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" *ngIf="auth.user | async as user" [routerLink]="['/users']" routerLinkActive="router-link-active">Users</a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" *ngIf="auth.user | async as user">{{user.displayName }}</a>

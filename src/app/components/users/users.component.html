@@ -1,0 +1,18 @@
+<div class="container">
+  <h1 class="text-warning mb-5">Registered Users</h1>
+  <table class="table table-hover table-bordered table-responsive-sm">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Email</th>
+        <th scope="col">Name</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let user of users | async">
+        <td scope="col">{{ user.email }}</td>
+        <td scope="col">{{ user.displayName }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

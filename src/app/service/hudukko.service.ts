@@ -1,21 +1,42 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HudukkoService {
 
-  public API_URL = 'http://localhost:3000';
+  private flipkartdata = new BehaviorSubject<any>(null);
+  public flipkartdata$ = this.flipkartdata.asObservable();
+
+  private snapdealData = new BehaviorSubject<any>(null);
+  public snapdealData$ = this.snapdealData.asObservable();
 
   constructor(private http: HttpClient) { }
 
-  getProduct(item, price) {
+  public getFlipkartData(url) {
+    return this.http
+      .get(url)
+      .pipe(data => {
+        return data;
+      });
+  }
 
-    return this.http.get(this.API_URL + '/products').subscribe(data => {
-      console.log(data);
-    });
+  public getsnapdealData(url) {
+    return this.http
+      .get(url)
+      .pipe(data => {
+        return data;
+      });
+  }
 
+  public setFlipkartData(data) {
+    this.flipkartdata.next(data);
+  }
+
+  public setsnapDealData(data) {
+    this.snapdealData.next(data);
   }
 }
