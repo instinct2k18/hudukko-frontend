@@ -14,8 +14,11 @@
 </div>
 
 <ng-template #noData>
-  <h2 class="text-center text-warning mt-5">No Data Available</h2>
-  <a [routerLink]="['/home']" routerLinkActive="router-link-active"  class="btn btn-primary">Search Again</a>
+  <span style="font-size: 3rem;">
+    <i class="fa fa-spinner fa-spin"></i>
+    <br>
+    <caption>Loading...</caption>
+</span>
 </ng-template>
 
 <ng-template #short>
