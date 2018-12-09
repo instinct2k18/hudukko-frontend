@@ -1,5 +1,5 @@
 <div class="container" *ngIf="!(auth.user | async); else alreadyLoggedIn">
-    <h1 class="mb-5 hudukko text-center">hudukko</h1>
+  <h1 class="mb-5 hudukko text-center">hudukko</h1>
   <div class="card bg-light text-center">
     <div class="card-body">
       <h4>Login Here To Search Products:</h4>
@@ -14,36 +14,51 @@
 
 <ng-template #alreadyLoggedIn>
   <h1 class="mb-5 hudukko">hudukko</h1>
-  <div class="card">
+  <div class="card bg-dark">
     <div class="card-body">
-      <form class="mt-3">
-        <div class="row">
-          <div class="col-sm-6 col-md-6 col-xs-6">
-            <div class="form-group no-gutters">
-              <input #product type="text" class="form-control" id="product" aria-describedby="searchHelp" placeholder="Eg. Shoes, Mobiles,Laptop">
+      <div class="jumbotron">
+        <form #productForm="ngForm" (ngSubmit)="search(productForm)" class="mt-3">
+          <div class="row">
+
+            <div class="col-sm-6 col-md-6 col-xs-6">
+              <div class="form-group no-gutters">
+                <input #product="ngModel" id="product" name="product" type="text" ngModel class="form-control"
+                  placeholder="Eg. Shoes, Mobiles,Laptop" pattern="[a-zA-Z][a-zA-Z]+" required>
+              </div>
+              <div *ngIf="product.touched">
+                <div *ngIf="product.errors?.required" class="alert alert-danger">Product Is Required</div>
+              </div>
+            </div>
+
+            <div class="col-sm-3 col-md-3 col-xs-3">
+              <div class="form-group no-gutters">
+                <input #price="ngModel" type="number" id="price" name="price" class="form-control" placeholder="Price" list="common"
+                  pattern="[0-9]*" required>
+                <datalist id="common">
+                  <option value="100">100</option>
+                  <option value="200">200</option>
+                  <option value="500">500</option>
+                  <option value="1000">1000</option>
+                  <option value="2000">2000</option>
+                  <option value="5000">5000</option>
+                  <option value="10000">10000</option>
+                </datalist>
+              </div>
+              <div *ngIf="price.touched">
+                <div *ngIf="price.errors?.required" class="alert alert-danger">Price Is Required</div>
+              </div>
+            </div>
+
+            <div class="col-sm-3 col-md-3 col-xs-3">
+              <div class="form-group no-gutters">
+                <button type="submit" class="btn btn-large btn-primary" [disabled]="productForm.invalid">Hudku</button>
+              </div>
             </div>
           </div>
-          <div class="col-sm-3 col-md-3 col-xs-3">
-            <div class="form-group no-gutters">
-              <input #price type="number" class="form-control" id="price" placeholder="Price" list="common">
-              <datalist id="common">
-                <option value="100">100</option>
-                <option value="200">200</option>
-                <option value="500">500</option>
-                <option value="1000">1000</option>
-                <option value="2000">2000</option>
-                <option value="5000">5000</option>
-                <option value="10000">10000</option>
-              </datalist>
-            </div>
-          </div>
-          <div class="col-sm-3 col-md-3 col-xs-3">
-            <div class="form-group no-gutters">
-              <button type="button" class="btn btn-large btn-primary" [routerLink]="['/results']" routerLinkActive="router-link-active"  (click)="search(product.value,price.value)">Hudku</button>
-            </div>
-          </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
+
+
 </ng-template>

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { HudukkoService } from 'src/app/service/hudukko.service';
+import { Product } from '../../model/Product';
 
 export class Data {
   link: string;
@@ -18,6 +19,8 @@ export class Data {
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+
+  product: Product;
   public API_URL = 'https://hudukkoli.herokuapp.com/api';
 
   public flipkartData: Object;
@@ -65,21 +68,21 @@ export class HomeComponent {
     return this.router.navigate(['/']);
   }
 
-  public search(product, price) {
-    console.log('here');
-    const flipkartUrl = this.API_URL + '/scrapeFlipkart?product=' + product + '&price=' + price;
-    const snapDealUrl = this.API_URL + '/scrapeSnapdeal?product=' + product + '&price=' + price;
-    console.log(flipkartUrl, snapDealUrl);
+  public search(formData) {
+    console.log(formData.value);
+    // const flipkartUrl = this.API_URL + '/scrapeFlipkart?product=' + product + '&price=' + price;
+    // const snapDealUrl = this.API_URL + '/scrapeSnapdeal?product=' + product + '&price=' + price;
+    // console.log(flipkartUrl, snapDealUrl);
 
-    this.hudukko.getFlipkartData(flipkartUrl).subscribe(data => {
-      this.hudukko.setFlipkartData(data);
-      console.log('Data Set : ' + data);
-    });
+    // this.hudukko.getFlipkartData(flipkartUrl).subscribe(data => {
+    //   this.hudukko.setFlipkartData(data);
+    //   console.log('Data Set : ' + data);
+    // });
 
-    this.hudukko.getsnapdealData(snapDealUrl).subscribe(data => {
-      this.hudukko.setsnapDealData(data);
-      console.log('Data Set : ' + data);
-    });
+    // this.hudukko.getsnapdealData(snapDealUrl).subscribe(data => {
+    //   this.hudukko.setsnapDealData(data);
+    //   console.log('Data Set : ' + data);
+    // });
 
   }
 
