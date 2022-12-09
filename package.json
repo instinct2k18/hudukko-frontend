@@ -30,7 +30,7 @@
     "popper.js": "^1.14.6",
     "rxjs": "~6.3.3",
     "zone.js": "~0.8.26",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "typescript": "~3.1.1"
   },
   "devDependencies": {
